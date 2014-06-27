@@ -8,6 +8,8 @@ class PagesController < ApplicationController
 
 	def list
 		@pets = Pets.get_pets(params["shelter"],params["count"])["petfinder"]["pets"]["pet"]
-		create_all(@pets)
+		@pet_array = Pets.parse(@pets)
+		@pet_array.each {|pet| Pet.create(pet)}
+		redirect_to '/pets'
 	end
 end
