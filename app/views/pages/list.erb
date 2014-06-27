@@ -1,1 +1,10 @@
-<button id='apicall'>GET PETS</button>
+<% @pets.each do |pet| %>
+	<% if pet["breeds"]["breed"].is_a? Hash %>
+		<p> <%= pet["name"]["$t"] %> is a <%= pet["breeds"]["breed"]["$t"]  %> </p>
+		<% else %>
+	<p> <%= pet["name"]["$t"] %> is a mix of <% pet["breeds"]["breed"].each do |breed_hash|  %> 
+		 <%= breed_hash["$t"] %> 
+		 <%= " and " unless pet.index(breed_hash["$t"]) == 1 %> </p>
+		<% end %>
+	<% end %>
+<% end %>

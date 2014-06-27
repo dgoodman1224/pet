@@ -1,7 +1,13 @@
 class PagesController < ApplicationController
-	def list
+	
+	def index
+	end
 
-		@shelter = Pets.get_pets
-		p @shelter
+	def create
+	end
+
+	def list
+		@pets = Pets.get_pets(params["shelter"],params["count"])["petfinder"]["pets"]["pet"]
+		create_all(@pets)
 	end
 end
